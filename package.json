@@ -1,0 +1,18 @@
+{
+  "name": "aws-wiki",
+  "version": "1.0.0",
+  "description": "Chrome extension that provides a living, breathing wiki providing human friendly AWS documention ",
+  "scripts": {
+    "test": "npm t"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brockinit/aws-wiki.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/brockinit/aws-wiki/issues"
+  },
+  "homepage": "https://github.com/brockinit/aws-wiki#readme"
+}
