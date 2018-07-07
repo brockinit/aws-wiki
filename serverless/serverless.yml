@@ -22,3 +22,9 @@ functions:
       - http:
           path: /documentation/{pageId}/notes
           method: get
+  getPageNotesById:
+      handler: functions/getPageNotesById.handler
+      events:
+        - http:
+            path: /documentation/{pageId}/notes/:noteId
+            method: get
