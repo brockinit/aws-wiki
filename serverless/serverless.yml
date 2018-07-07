@@ -28,3 +28,21 @@ functions:
         - http:
             path: /documentation/{pageId}/notes/:noteId
             method: get
+  updatePageNoteById:
+      handler: functions/updatePageNoteById.handler
+      events:
+        - http:
+            path: /documentation/{pageId}/notes/:noteId
+            method: put
+  addPageNote:
+      handler: functions/addPageNote.handler
+      events:
+        - http:
+            path: /documentation/{pageId}/notes
+            method: post
+  deletePageNoteById:
+      handler: functions/deletePageNoteById.handler
+      events:
+        - http:
+            path: /documentation/{pageId}/notes/:noteId
+            method: delete
