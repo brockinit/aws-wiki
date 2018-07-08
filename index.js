@@ -4,20 +4,15 @@ const db = require("./db");
 const bodyParser = require("body-parser");
 const app = express();
 
-app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.get("/", function(req, res) {
-  res.send("Hello World!");
-});
-
 app.get("/documentation/:pageId/notes", function(req, res) {
   const query = "SELECT * FROM notes WHERE page_id = $1";
-  const page_id = req.params.pageId;
-  const values = [page_id];
+  const pageId = req.params.pageId;
+  const values = [pageId];
 
-  if (!page_id) {
+  if (!pageId) {
     return res.status(400).json({ error: "Page Id required in the request" });
   }
   db.query(query, values, (err, result) => {
@@ -30,11 +25,11 @@ app.get("/documentation/:pageId/notes", function(req, res) {
 
 app.get("/documentation/:pageId/notes/:noteId", function(req, res) {
   const query = "SELECT * FROM notes WHERE page_id = $1 AND id = $2";
-  const page_id = req.params.pageId;
-  const note_id = req.params.noteId;
-  const values = [page_id, note_id];
+  const pageId = req.params.pageId;
+  const noteId = req.params.noteId;
+  const values = [pageId, noteId];
 
-  if (!page_id || !note_id) {
+  if (!pageId || !noteId) {
     return res.status(400).json({ error: "Page Id required in the request" });
   }
   db.query(query, values, (err, result) => {
