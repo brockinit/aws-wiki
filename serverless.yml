@@ -18,4 +18,4 @@ functions:
     handler: index.handler
     events:
       - http: ANY /
-      - https: 'ANY {proxy+}'
+      - http: 'ANY {proxy+}'
