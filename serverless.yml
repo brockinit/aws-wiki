@@ -1,0 +1,21 @@
+service: awsWiki
+
+package:
+  exclude:
+  - .circleci/**
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: ${opt:stage, "development"}
+  region: us-west-2
+
+plugins:
+  - serverless-offline
+
+functions:
+  app:
+    handler: index.handler
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'
