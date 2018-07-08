@@ -1,0 +1,1 @@
+create index page_idx on notes (page_id);
