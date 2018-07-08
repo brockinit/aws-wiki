@@ -16,33 +16,8 @@ provider:
     PG_USER: ${env:PG_USER}
 
 functions:
-  getPageNotes:
-    handler: functions/getPageNotes.handler
+  app:
+    handler: index.handler
     events:
-      - http:
-          path: /documentation/{pageId}/notes
-          method: get
-  getPageNotesById:
-      handler: functions/getPageNotesById.handler
-      events:
-        - http:
-            path: /documentation/{pageId}/notes/:noteId
-            method: get
-  updatePageNoteById:
-      handler: functions/updatePageNoteById.handler
-      events:
-        - http:
-            path: /documentation/{pageId}/notes/:noteId
-            method: put
-  addPageNote:
-      handler: functions/addPageNote.handler
-      events:
-        - http:
-            path: /documentation/{pageId}/notes
-            method: post
-  deletePageNoteById:
-      handler: functions/deletePageNoteById.handler
-      events:
-        - http:
-            path: /documentation/{pageId}/notes/:noteId
-            method: delete
+      - http: ANY /
+      - https: 'ANY {proxy+}'
