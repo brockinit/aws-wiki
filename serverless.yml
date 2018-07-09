@@ -9,6 +9,12 @@ provider:
   runtime: nodejs8.10
   stage: ${opt:stage, "development"}
   region: us-west-2
+  environment:
+    PGPORT: ${env:PGPORT}
+    PGPASSWORD: ${env:PGPASSWORD}
+    PGDATABASE: ${env:PGDATABASE}
+    PGUSER: ${env:PGUSER}
+    PGHOST: ${env:PGHOST}
 
 plugins:
   - serverless-offline

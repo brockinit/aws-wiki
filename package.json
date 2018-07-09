@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Chrome extension that provides a living, breathing wiki providing human friendly AWS documention ",
   "scripts": {
-    "test": "npm t"
+    "test": "./node_modules/.bin/mocha --reporter spec",
+    "deploy:dev": "env $(cat .env | xargs) sls deploy --stage development",
+    "deploy:prod": "env $(cat .env | xargs) sls deploy --stage production"
   },
   "repository": {
     "type": "git",
