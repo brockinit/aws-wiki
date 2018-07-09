@@ -30,7 +30,7 @@
   "homepage": "https://github.com/brockinit/aws-wiki#readme",
   "dependencies": {
     "body-parser": "1.18.3",
-    "cors": "^2.8.4",
+    "cors": "2.8.4",
     "express": "4.16.3",
     "husky": "0.14.3",
     "lint-staged": "7.2.0",
