@@ -1,15 +1,15 @@
 function fetchNotes(pageId, callback) {
   const getNotesUrl = `https://xc56ahkj9l.execute-api.us-west-2.amazonaws.com/development/documentation/${pageId}/notes`;
-  fetch(getNotesUrl)
+  return fetch(getNotesUrl)
     .then((result) => {
       return result.json();
     });
 }
 
-function addNoteToElement(el) {
+function addNoteToElement(el, noteBody) {
   el.insertAdjacentHTML(
     "beforebegin",
-    '<div id="andrea-test">NOTES BRAH!!!!!</div>'
+    `<div id="andrea-test">${noteBody}</div>`
   );
 }
 
@@ -19,10 +19,11 @@ window.onload = function () {
     .then((pageNotes) => {
       // Page notes will be an array. Loop over each note and place a marker on the page
       pageNotes.forEach((note) => {
-        const noteElement = note.pageElement ?
-          document.querySelector(note.pageElement) :
+        const { pageElement, noteBody } = note;
+        const noteElement = pageElement ?
+          document.querySelector(pageElement) :
           document.getElementsByTagName("h1")[0];
-        addNoteToElement(noteElement);
+        addNoteToElement(noteElement, noteBody);
       });
     })
     .catch((err) => {
