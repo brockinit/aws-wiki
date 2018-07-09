@@ -45,8 +45,11 @@ function addNoteToPage() {
 function appendNoteToElement(el, noteBody) {
   let iconURL = chrome.extension.getURL("/icon.png");
   let icon = `<div id="hotspot"><img src=${iconURL} height=50px onmouseover="" style="cursor: pointer;"></div>`;
-  
-  el.insertAdjacentHTML("beforebegin", `<div>${noteBody}</div>`);
+  el.insertAdjacentHTML("beforebegin", icon);
+  let clickableHotspot = document.getElementById("hotspot");
+  clickableHotspot.onclick = function() {
+    el.insertAdjacentHTML("beforebegin", noteBody);
+  };
 }
 
 window.onload = function() {
@@ -54,8 +57,8 @@ window.onload = function() {
     .then(pageId => fetchNotes(pageId))
     .then(pageNotes => {
       pageNotes.forEach(note => {
-        const { pageElement, noteBody } = note;
-
+        const pageElement = note.page_element;
+        const noteBody = note.note_body;
         const noteElement = pageElement
           ? document.querySelector(pageElement)
           : document.getElementsByTagName("h1")[0];
@@ -66,14 +69,3 @@ window.onload = function() {
       // Do something here to let the user know the app failed to fetch the page notes
     });
 };
-
-//   let clickableHotspot = document.getElementById("hotspot");
-//   let notes = '<div id="notes" style="display: none">NOTES BRAH!!!</div>';
-//   clickableHotspot.onclick = function() {
-//     console.log(notes.style.display, "notes style");
-//     document.getElementById("main-col-body").insertAdjacentHTML("beforebegin")
-//       .style.display === "none"
-//       ? ""
-//       : "none";
-//   };
-// =======
