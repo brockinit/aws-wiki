@@ -1,21 +1,3 @@
-// <<<<<<< HEAD
-// window.onload = function() {
-//   let iconURL = chrome.extension.getURL("/icon.png");
-//   let icon = `<div id="hotspot"><img src=${iconURL} height=50px onmouseover="" style="cursor: pointer;"></div>`;
-//   document
-//     .getElementById("main-col-body")
-//     .insertAdjacentHTML("beforebegin", icon);
-
-//   let clickableHotspot = document.getElementById("hotspot");
-//   let notes = '<div id="notes" style="display: none">NOTES BRAH!!!</div>';
-//   clickableHotspot.onclick = function() {
-//     console.log(notes.style.display, "notes style");
-//     document.getElementById("main-col-body").insertAdjacentHTML("beforebegin")
-//       .style.display === "none"
-//       ? ""
-//       : "none";
-//   };
-// =======
 function sha256(str) {
   // We transform the string into an arraybuffer.
   var buffer = new TextEncoder("utf-8").encode(str);
@@ -61,6 +43,8 @@ function addNoteToPage() {
 }
 
 function appendNoteToElement(el, noteBody) {
+  let iconURL = chrome.extension.getURL("/icon.png");
+  let icon = `<div id="hotspot"><img src=${iconURL} height=50px onmouseover="" style="cursor: pointer;"></div>`;
   el.insertAdjacentHTML("beforebegin", `<div>${noteBody}</div>`);
 }
 
@@ -68,9 +52,9 @@ window.onload = function() {
   sha256(window.location.pathname)
     .then(pageId => fetchNotes(pageId))
     .then(pageNotes => {
-      console.log(pageNotes, "pageNotes");
       pageNotes.forEach(note => {
         const { pageElement, noteBody } = note;
+
         const noteElement = pageElement
           ? document.querySelector(pageElement)
           : document.getElementsByTagName("h1")[0];
@@ -80,5 +64,15 @@ window.onload = function() {
     .catch(err => {
       // Do something here to let the user know the app failed to fetch the page notes
     });
-  // >>>>>>> master
 };
+
+//   let clickableHotspot = document.getElementById("hotspot");
+//   let notes = '<div id="notes" style="display: none">NOTES BRAH!!!</div>';
+//   clickableHotspot.onclick = function() {
+//     console.log(notes.style.display, "notes style");
+//     document.getElementById("main-col-body").insertAdjacentHTML("beforebegin")
+//       .style.display === "none"
+//       ? ""
+//       : "none";
+//   };
+// =======
