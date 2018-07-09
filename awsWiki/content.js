@@ -19,18 +19,9 @@ window.onload = function () {
     .then((pageNotes) => {
       // Page notes will be an array. Loop over each note and place a marker on the page
       pageNotes.forEach((note) => {
-        let noteElement;
-        // Highlighted element didn't have a class/id, append to document title
-        if (!note.pageElement) {
-          noteElement = document
-            .getElementsByTagName("h1")[0]
-            .insertAdjacentHTML(
-              "beforebegin",
-              '<div id="andrea-test">NOTES BRAH!!!!!</div>'
-            );
-        } else {
-          noteElement = document.querySelector(note.pageElement);
-        }
+        const noteElement = note.pageElement ?
+          document.querySelector(note.pageElement) :
+          document.getElementsByTagName("h1")[0];
         addNoteToElement(noteElement);
       });
     })
