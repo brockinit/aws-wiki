@@ -1,7 +1,7 @@
 function sha256(str) {
   // We transform the string into an arraybuffer.
   var buffer = new TextEncoder("utf-8").encode(str);
-  return crypto.subtle.digest("SHA-256", buffer).then(function (hash) {
+  return crypto.subtle.digest("SHA-256", buffer).then((hash) => {
     return hex(hash);
   });
 }
@@ -31,13 +31,14 @@ function fetchNotes(pageId) {
     });
 }
 
-function addNoteToPage() {
+function addNoteToPage(noteBody) {
   const postNoteUrl = `https://xc56ahkj9l.execute-api.us-west-2.amazonaws.com/development/documentation/${pageId}/notes`;
   return fetch(postNoteUrl, {
     method: "POST",
     headers: {
       "Content-Type": "application/json; charset=utf-8"
     },
+    body: JSON.stringify({ noteBody })
   })
     .then((result) => {
       return result.json();
@@ -55,13 +56,12 @@ window.onload = function () {
   sha256(window.location.pathname)
     .then((pageId) => fetchNotes(pageId))
     .then((pageNotes) => {
-      console.log(pageNotes, 'pageNotes');
       pageNotes.forEach((note) => {
-        const { pageElement, noteBody } = note;
-        const noteElement = pageElement ?
-          document.querySelector(pageElement) :
+        const { page_element, note_body } = note;
+        const noteElement = page_element ?
+          document.querySelector(page_element) :
           document.getElementsByTagName("h1")[0];
-        appendNoteToElement(noteElement, noteBody);
+        appendNoteToElement(noteElement, note_body);
       });
     })
     .catch((err) => {
