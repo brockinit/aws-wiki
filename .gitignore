@@ -56,3 +56,6 @@ jspm_packages
 
 # Serverless config files
 .serverless
+
+# File used for testing client-side code
+index.html

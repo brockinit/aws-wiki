@@ -42,6 +42,7 @@ window.onload = function () {
   sha256(window.location.pathname)
     .then((pageId) => fetchNotes(pageId))
     .then((pageNotes) => {
+      console.log(pageNotes, 'pageNotes');
       // Page notes will be an array. Loop over each note and place a marker on the page
       pageNotes.forEach((note) => {
         const { pageElement, noteBody } = note;
