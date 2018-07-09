@@ -9,5 +9,6 @@
       "js": ["content.js"],
       "matches": ["https://docs.aws.amazon.com/*"]
     }
-  ]
+  ],
+  "web_accessible_resources": ["icon.png"]
 }
