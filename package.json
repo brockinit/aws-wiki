@@ -2,12 +2,10 @@
   "name": "aws-wiki",
   "version": "1.0.0",
   "description": "Chrome extension that provides a living, breathing wiki providing human friendly AWS documention ",
-  "config": {
-    "stage": "development"
-  },
   "scripts": {
     "test": "npm t",
-    "deploy": "env $(cat .env | xargs) sls deploy --stage $npm_package_config_stage"
+    "deploy:dev": "env $(cat .env | xargs) sls deploy --stage development",
+    "deploy:prod": "env $(cat .env | xargs) sls deploy --stage production"
   },
   "repository": {
     "type": "git",
