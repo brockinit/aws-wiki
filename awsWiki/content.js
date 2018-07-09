@@ -1,7 +1,17 @@
-//Just a sanity check that this works. It turns any image into a picture of a cat
+window.onload = function() {
+  let iconURL = chrome.extension.getURL("/icon.png");
+  let icon = `<div id="hotspot"><img src=${iconURL} height=50px onmouseover="" style="cursor: pointer;"></div>`;
+  document
+    .getElementById("main-col-body")
+    .insertAdjacentHTML("beforebegin", icon);
 
-var images = document.getElementsByTagName("img");
-for (var i = 0, l = images.length; i < l; i++) {
-  images[i].src =
-    "http://placekitten.com/" + images[i].width + "/" + images[i].height;
-}
+  let clickableHotspot = document.getElementById("hotspot");
+  let notes = '<div id="notes" style="display: none">NOTES BRAH!!!</div>';
+  clickableHotspot.onclick = function() {
+    console.log(notes.style.display, "notes style");
+    document.getElementById("main-col-body").insertAdjacentHTML("beforebegin")
+      .style.display === "none"
+      ? ""
+      : "none";
+  };
+};
