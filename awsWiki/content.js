@@ -1,7 +1,7 @@
 function sha256(str) {
   // We transform the string into an arraybuffer.
   var buffer = new TextEncoder("utf-8").encode(str);
-  return crypto.subtle.digest("SHA-256", buffer).then(function(hash) {
+  return crypto.subtle.digest("SHA-256", buffer).then(hash => {
     return hex(hash);
   });
 }
@@ -43,8 +43,8 @@ function addNoteToPage() {
 }
 
 function appendNoteToElement(el, noteBody) {
-  let iconURL = chrome.extension.getURL("/icon.png");
-  let icon = `<div id="hotspot"><img src=${iconURL} height=50px onmouseover="" style="cursor: pointer;"></div>`;
+  const iconURL = chrome.extension.getURL("/icon.png");
+  const icon = `<div id="hotspot"><img src=${iconURL} height=50px onmouseover="" style="cursor: pointer;"></div>`;
   el.insertAdjacentHTML("beforebegin", icon);
   let clickableHotspot = document.getElementById("hotspot");
   clickableHotspot.onclick = function() {
